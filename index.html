@@ -22,56 +22,78 @@
     <header class="container-fluid bg-dark text-light  text-center">
       <div class="row text-light">
         <div class="col-12 ">
-          <h1>Cheeseball Miner</h1>
+          <h1 class="font-weight-bolder">MOON MINER</h1>
         </div>
       </div>
       <div class="row  text-white justify-content-end">
         <div class="col-3">
-          <button class="btn btn-light text dark rounded"><h1>Thing 1</h1>
+           <button id="menuBtn1" onclick="clickedMenu1('')"class="btn btn-white text-secondary bg-light rounded  text-center"> <h1>Thing 1</h1>
           </button>
           </div>
         <div class="col-3">
-          <button class="btn btn-light text dark rounded"><h1>Thing 2</h1>
+           <button id="menuBtn2" onclick="clickedMenu2('')"class="btn btn-white text-secondary bg-light rounded  text-center"> <h1>Thing 2</h1>
           </button>
           </div>
         <div class="col-3">
-          <button class="btn btn-light text dark rounded"><h1>Thing 3</h1>
+           <button id="menuBtn3" onclick="clickedMenu3('')"class="btn btn-white text-secondary bg-light rounded  text-center"> <h1>Thing 3</h1>
           </button>    
           </div>
       </div>
     </header>
-    <main class="container-fluid text-center bg-dark  p-5">
+    <main class="container-fluid text-right bg-dark  p-5">
       <div class="row justify-content-around">
-        <div class="col-8"></div>
-      <img  class="rounded-circle" id ="Moon" onclick="test()" src="Resources\moon-charles-mccolm-01.svg" alt="" width="550vh">
+        <div class="col-2 bg-white justify-content-end text-left text-dark rounded shadow-lg">
+          <div class="row">
+          <div class="col-12  m-3 rounded"><h4>Mods: <span id="activeMods">--</span></h4></div>
+        </div>
+        <div class="row">
+          <div class="col-12  m-3 rounded"><h4>Other???: <span id="???">--</span></h4></div>
+        </div>
+        <div class="row"></div>
+          <div class="col-12  m-3 rounded"><h4>TotalRate: <span id="activeRate">--</span></h4> </div>
+        </div>
+        <div class="col-4">
+      <img  class="rounded-circle" id ="Moon" onclick="clickedMoon()" src="Resources\moon-charles-mccolm-01.svg" alt="" width="400vh">
+    </div>
     
-    <div class="col-2">
+    <div class="col-2  text-right">
       <div class="row">
-        <div class="col-12 bg-light text-dark my-5 rounded"><h3>Mod 1</h3></div>
+      <div class="col-12 text-center bg-light text-dark w-100 rounded shadow-lg"><h3>Moon Dollars: </h3>
+        <h1><span id="pointTotal">--</span></h1>
+      </div>
+    </div>
+    <div class="row pt-5 ">
+        <div id="mod1" onclick="clickedMod1('moonPickaxe')"class="col-12 text-dark my-2  rounded">
+          <button class="btn btn-secondary w-100 shadow-lg"><h3>Moon Pickaxe</h3></button></div>
       </div>
       <div class="row">
-        <div class="col-12 bg-light text-dark my-5 rounded"><h3>Mod 2</h3></div>
+        <div id="mod2" onclick="clickedMod2('moonDonkey')"class="col-12 text-dark my-2 rounded">
+          <button class="btn btn-secondary w-100 shadow-lg"><h3>Moon Donkey</h3></button></div>
       </div>
       <div class="row">
-        <div class="col-12 bg-light text-dark my-5 rounded"><h3>Mod 3</h3></div>
+        <div id="mod3" onclick="clickedMod3('moonSaddlebag')"class="col-12 text-dark my-2 rounded">
+          <button class="btn btn-secondary w-100 shadow-lg"><h3>Moon Saddlebag</h3></button></div>
       </div>
       <div class="row">
-        <div class="col-12 bg-light text-dark my-5 rounded"><h3>Mod 4</h3></div>
+        <div id="mod4" onclick="clickedMod4('moonWagon')"class="col-12 text-dark my-2 rounded">
+          <button class="btn btn-secondary w-100 shadow-lg"><h3>Moon Wagon</h3></button></div>
+      </div>
+      <div class="row">
+        <div id="mod5" onclick="clickedMod5('moonCarrots')"class="col-12 text-dark my-2 rounded">
+          <button class="btn btn-secondary w-100 shadow-lg"><h3>Carrot My Donkey</h3></button></div>
       </div>
     </div>
   </div>
     </main>
     <footer class="container-fluid bg-dark">
-      <div class="row text-white justify-content-end">
-        <div class="col-2 bg-light text-dark m-3 rounded">Total: </div>
-        <div class="col-2 bg-light text-dark m-3 rounded">Mods: </div>
-        <div class="col-2 bg-light text-dark m-3 rounded">Other???: </div>
-        <div class="col-2 bg-light text-dark m-3 rounded">Total Rate: </div>
-      </div>
+     
+        
+    
+      
     </footer>
   </body>
     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
