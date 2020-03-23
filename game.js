@@ -21,41 +21,41 @@ let mods = {
     name: "Moon Pickaxe",
     qty: 0,
     mod: 2,
-    cost: 50,
+    cost: 20,
     costMultiplier: 2,
     available: false,
     intervalMod: false,
-    resetCost: 50
+    resetCost: 20
   },
   moonDonkey: {
     name: "Moon Donkey",
     qty: 0,
     mod: 3,
+    cost: 100,
+    costMultiplier: 2,
+    available: false,
+    intervalMod: false,
+    resetCost: 100
+  },
+  moonSaddlebag: {
+    name: "Moon Saddlebag",
+    qty: 0,
+    mod: 2,
     cost: 200,
     costMultiplier: 2,
     available: false,
     intervalMod: false,
     resetCost: 200
   },
-  moonSaddlebag: {
-    name: "Moon Saddlebag",
-    qty: 0,
-    mod: 2,
-    cost: 300,
-    costMultiplier: 2,
-    available: false,
-    intervalMod: false,
-    resetCost: 300
-  },
   moonWagon: {
     name: "Moon Cart",
     qty: 0,
     mod: 5,
-    cost: 1000,
+    cost: 500,
     costMultiplier: 2,
     available: false,
     intervalMod: false,
-    resetCost: 1000
+    resetCost: 500
   },
   moonCarrots: {
     name: "Moon Carrot",
@@ -125,6 +125,7 @@ function intervalMods(modKey) {
   setInterval(function() {
     totalPts += modKey.qty * mods[modKey.preReq].qty;
     drawTotalScore();
+    updateMods();
     drawModButtons();
     drawRank();
   }, 1000);
@@ -133,17 +134,7 @@ function intervalMods(modKey) {
 function clickedMoon() {
   totalPts++;
   totalPts += activeModRate;
-  for (const key in mods) {
-    if (mods.hasOwnProperty(key) && mods[key].cost <= totalPts) {
-      const element = mods[key];
-      element.available = true;
-      //console.log(element.name, element.available);
-    } else if (mods.hasOwnProperty(key) && mods[key].cost > totalPts) {
-      const element = mods[key];
-      element.available = false;
-      //console.log(element.name, element.available);
-    }
-  }
+  updateMods();
   drawModButtons();
   drawTotalScore();
   drawRank();
@@ -168,10 +159,12 @@ function modClicked(modKey) {
         }
       }
     }
+    updateMods();
     drawModButtons();
     drawTotalScore();
   }
   updateActiveModRate();
+
   drawModTotals();
 }
 
@@ -198,6 +191,19 @@ function drawActiveModRate() {
   ).toString();
 }
 
+function updateMods() {
+  for (const key in mods) {
+    if (mods.hasOwnProperty(key) && mods[key].cost <= totalPts) {
+      const element = mods[key];
+      element.available = true;
+      //console.log(element.name, element.available);
+    } else if (mods.hasOwnProperty(key) && mods[key].cost > totalPts) {
+      const element = mods[key];
+      element.available = false;
+      //console.log(element.name, element.available);
+    }
+  }
+}
 //clear all values when player clicks Reset button
 function reset() {
   player.activeMods.splice(0);
@@ -211,6 +217,7 @@ function reset() {
       element.cost = element.resetCost;
     }
   }
+  updateMods();
   drawModTotals();
   drawModButtons();
   drawTotalScore();
