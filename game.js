@@ -31,11 +31,11 @@ let mods = {
     name: "Moon Donkey",
     qty: 0,
     mod: 3,
-    cost: 100,
+    cost: 50,
     costMultiplier: 2,
     available: false,
     intervalMod: false,
-    resetCost: 100
+    resetCost: 50
   },
   moonSaddlebag: {
     name: "Moon Saddlebag",
