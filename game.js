@@ -21,50 +21,56 @@ let mods = {
     name: "Moon Pickaxe",
     qty: 0,
     mod: 2,
-    cost: 25,
+    cost: 50,
     costMultiplier: 2,
     available: false,
-    intervalMod: false
+    intervalMod: false,
+    resetCost: 50
   },
   moonDonkey: {
     name: "Moon Donkey",
     qty: 0,
     mod: 3,
-    cost: 1000,
+    cost: 200,
     costMultiplier: 2,
     available: false,
-    intervalMod: false
+    intervalMod: false,
+    resetCost: 200
   },
   moonSaddlebag: {
     name: "Moon Saddlebag",
     qty: 0,
-    mod: 1,
-    cost: 200,
+    mod: 2,
+    cost: 300,
     costMultiplier: 2,
     available: false,
-    intervalMod: false
+    intervalMod: false,
+    resetCost: 300
   },
   moonWagon: {
     name: "Moon Cart",
     qty: 0,
     mod: 5,
-    cost: 5000,
+    cost: 1000,
     costMultiplier: 2,
     available: false,
-    intervalMod: false
+    intervalMod: false,
+    resetCost: 1000
   },
   moonCarrots: {
     name: "Moon Carrot",
     qty: 0,
-    mod: 2,
-    cost: 200,
+    mod: 1,
+    cost: 300,
     costMultiplier: 2,
     available: false,
     intervalMod: true,
-    preReq: "moonDonkey"
+    preReq: "moonDonkey",
+    resetCost: 300
   }
 };
 
+//generates all mod buttons from the "mods" object and injects them into the HTML
 function drawModButtons() {
   let modButtonTemplate = "";
   for (let modKey in mods) {
@@ -74,15 +80,17 @@ function drawModButtons() {
       if (!mod.available) {
         modButtonTemplate +=
           /*html*/
-          `<div class="row text-secondary bg-transparent rounded text-center my-2 btn btn-secondary w-100" onClick="modClicked('${modKey}')">
+          `<div class="col-xs-6 col-md-2 my-2 text-secondary bg-transparent rounded text-center btn btn-secondary" onClick="modClicked('${modKey}')">
+          <div class="row">
         <div class="col-12"><h3>${mod.name}</h3></div>
         <div class="col-12 text-muted font-italic font-weight-light"><h5>+$${mod.mod} per click bonus
         </h5></div>
         <div class="col-12 text-muted font-weight-bold"><h3>Moon Cost: ${mod.cost}
         </h3></div>
+        </div>
       </div>`;
       } else {
-        modButtonTemplate += /*html*/ `<div class="row text-light rounded text-center py-1 my-3 btn btn-success w-100" onClick="modClicked('${modKey}')">
+        modButtonTemplate += /*html*/ `<div class="col-xs-6 col-md-2 text-light my-2 bg-success rounded text-center btn btn-success" onClick="modClicked('${modKey}')">
     <div class="col-12"><h2>${mod.name}</h2></div>
     <div class="col-12 text-light font-italic"><h4>+$${mod.mod} per click bonus
         </h4></div>
@@ -96,12 +104,13 @@ function drawModButtons() {
   document.getElementById("modButtons").innerHTML = modButtonTemplate;
 }
 
+//Generates the HTML to represent only purchased mods and their quantities and injects them
 function drawModTotals() {
   let modTotals = "";
   for (let key in mods) {
     if (mods.hasOwnProperty(key) && mods[key].qty != 0) {
       let element = mods[key];
-      modTotals += /*html*/ `<div class="col-12 font-weight-bold font-italic pl-2 text-left text-success">${element.name}s:</div>
+      modTotals += /*html*/ `<div class="col-12 font-weight-bold font-italic pl-2  text-left text-success">${element.name}s:</div>
       
       <div class=" col-12 text-center">X ${element.qty}</div>
       `;
@@ -110,11 +119,14 @@ function drawModTotals() {
   document.getElementById("activeMods").innerHTML = modTotals;
 }
 
+//Calculates interval mods and their associated requirements and adds them to the point total; Calls draw functions to update the score, mod availability, and rank while Moon is not being clicked
 function intervalMods(modKey) {
   console.log("carrot generator called...");
   setInterval(function() {
     totalPts += modKey.qty * mods[modKey.preReq].qty;
     drawTotalScore();
+    drawModButtons();
+    drawRank();
   }, 1000);
 }
 
@@ -172,7 +184,7 @@ function updateActiveModRate() {
 //Calculate and display player rank
 function drawRank() {
   document.getElementById("playerRank").innerHTML =
-    player.level[Math.floor(totalPts / 10000)];
+    player.level[Math.floor(totalPts / 2500)];
 }
 
 function drawTotalScore() {
@@ -196,6 +208,7 @@ function reset() {
       const element = mods[key];
       element.qty = 0;
       element.available = false;
+      element.cost = element.resetCost;
     }
   }
   drawModTotals();
