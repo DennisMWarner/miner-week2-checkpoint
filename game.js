@@ -16,6 +16,7 @@ let player = {
   activeMods: []
 };
 
+//object containing mod objects
 let mods = {
   moonPickaxe: {
     name: "Moon Pickaxe",
