@@ -122,7 +122,7 @@ function drawModTotals() {
 
 //Calculates interval mods and their associated requirements and adds them to the point total; Calls draw functions to update the score, mod availability, and rank while Moon is not being clicked
 function intervalMods(modKey) {
-  console.log("carrot generator called...");
+  //console.log("carrot generator called...");
   setInterval(function() {
     totalPts += modKey.qty * mods[modKey.preReq].qty;
     drawTotalScore();
