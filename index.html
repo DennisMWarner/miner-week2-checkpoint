@@ -16,24 +16,24 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="game.css" />
-    <title>Cheeseball Miner</title>
+    <title>Moon Miner</title>
   </head>
   <body class="fullscreen bg-dark">
-    <header class="container-fluid  text-light  text-center">
+    <header class="bg-dark container-fluid text-light text-center">
       <div class="row text-light">
-        <div class="col-12 ">
-          <h1 class="font-weight-bolder text-title">MOON MINER</h1>
+        <div class="col-12">
+          <h1 class="font-weight-bold text-nowrap text-title">MOON MINER</h1>
         </div>
       </div>
       
       </div>
     </header>
-    -->
-    <main class="container-fluid text-right p-5">
+  
+    <main class="container-fluid text-right p-4">
       <div class="row justify-content-around">
-        <div class="col-2 h-100 bg-white text-left text-dark rounded shadow-lg">
+        <div class="col-md-2 h-100 bg-white text-left text-dark rounded shadow-lg">
           <div class="row">
-            <div class="col-12 py-2">
+            <div class="col-md-12 py-2 font-italic font-bolder">
               <h4>Rank: <span  id="playerRank"></span></h4>
             </div>
           </div>
@@ -43,32 +43,35 @@
               <span id="activeMods">
               <!--Active mods and quantities of each listed here -->
             </span>
+            <span id="intervalMods">
+              <!--Intervaled mods and quantities listed here -->
+            </span>
             </div>
           </div>
           <div class="row">
-          <div class="col-12 pb-2">
+          <div class="col-md-2 pb-2">
             <h4>Moon Dollars<br>per click: <span id="dollarsPerClick"></span></h4>
           </div>
         </div>
         </div>
-        <div class="col-4">
+        <div class="col-md-4 justify-content-center">
           <img
             class="rounded-circle"
             id="Moon"
             onclick="clickedMoon()"
             src="Resources\moon-charles-mccolm-01.svg"
             alt=""
-            width="600vh"
+            width="200vh"
           />
         </div>
 
-        <div class="col-2">
+        <div class="col-md-2">
           <div class="row">
             
               <button
                 id="menuBtn1"
                 onclick="reset()"
-                class="btn btn-danger ol-12 w-100 mb-5  text-light bg-danger rounded  text-center p-3"
+                class="btn btn-danger  col-xs-6 col-md-2 w-100 mb-5  text-light bg-danger rounded  text-center p-3"
               >
                 <h1>Reset</h1>
               </button>
